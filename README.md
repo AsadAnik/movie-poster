@@ -12,6 +12,12 @@ A beautiful, functional, and highly interactive prototype built for Mr. Anthony 
 - **Watchlist**: Persisted watchlist (per user/session). Users can add and remove movies effortlessly from anywhere.
 - **Premium Design & Interactivity**: Built with a sleek dark aesthetic, dynamic glassmorphism UI cards, hover animations, layout transitions (using `framer-motion`), and responsive design for all device types.
 
+## 📸 Screenshots
+<div align="center">
+  <img src="public/screenshot-1.png" width="48%" alt="Search Experience" />
+  <img src="public/screenshot-2.png" width="48%" alt="Movie Details" />
+</div>
+
 ## 🛠️ Tech Stack
 - **React (Vite Base)**: Fast tooling with great developer experience.
 - **TypeScript**: Strict typing for predictable behavior.
