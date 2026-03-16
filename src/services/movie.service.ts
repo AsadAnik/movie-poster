@@ -5,7 +5,7 @@ import type { MovieSearchResult, MovieDetails } from '../types/movie.types';
 // ─────────────────────────────────────────────
 
 const API_KEY = import.meta.env.VITE_OMDB_API_KEY || 'trilogy';
-const BASE_URL = 'https://www.omdbapi.com/';
+const BASE_URL = import.meta.env.VITE_OMDB_BASE_URL || 'https://www.omdbapi.com/';
 
 export async function searchMovies(
   query: string,

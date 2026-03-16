@@ -39,10 +39,16 @@ Clone the repository, navigate into the project folder, and install dependencies
 npm install
 ```
 
-### 3. API Key Setup
-If you exceed rate limits with the default OMDb test key (`trilogy`), you can provide your own. Create a file named `.env.local` in the root of the project:
+### 3. Environment Variables Setup
+Copy the example environment file and provide your own OMDb API key if the default `trilogy` key is rate-limited:
+```bash
+cp .env.example .env.local
+```
+
+Your `.env.local` should look like this:
 ```env
 VITE_OMDB_API_KEY=your_cool_key_here
+VITE_OMDB_BASE_URL=https://www.omdbapi.com/
 ```
 
 ### 4. Running the Development Server
