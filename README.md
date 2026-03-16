@@ -3,7 +3,7 @@
 A beautiful, functional, and highly interactive prototype built for Mr. Anthony Russo to search for movies, view details, and save favorites to a personal watchlist.
 
 ## 🚀 Live Demo
-[https://movie-poster-nine.vercel.app/search](https://movie-poster-nine.vercel.app/search)
+[https://movie-poster-nine.vercel.app](https://movie-poster-nine.vercel.app)
 
 ## 🌟 Demo Video
 [Insert Google Drive Link Here]
