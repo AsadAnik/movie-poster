@@ -2,11 +2,11 @@ import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'r
 import type { ReactNode } from 'react';
 import { StoreProvider, useStore } from './store';
 import { Navbar } from './components/layout/Navbar';
-import Search from './modules/search/search';
-import CategoryPage from './modules/category/category';
-import Login from './pages/Login';
-import Watchlist from './pages/Watchlist';
-import MovieDetails from './pages/MovieDetails';
+import { Search } from './modules/search';
+import { Category } from './modules/category';
+import { Login } from './modules/auth';
+import { Watchlist } from './modules/watchlist';
+import { MovieDetails } from './modules/movie-details';
 
 function ProtectedRoute({ children }: { children: ReactNode }) {
   const { user } = useStore();
@@ -18,7 +18,7 @@ function ProtectedRoute({ children }: { children: ReactNode }) {
 
 function LayoutWrapper({ children }: { children: ReactNode }) {
   const location = useLocation();
-  const isSearchPage = location.pathname === '/search' || location.pathname === '/';
+  const isSearchPage = location.pathname === '/';
   const isCategoryPage = location.pathname.startsWith('/category/');
   
   // Only add top padding if it's NOT a full-screen hero page (Search) or custom-header page (Category)
@@ -44,9 +44,8 @@ function App() {
           
           <LayoutWrapper>
             <Routes>
-              <Route path="/" element={<Navigate to="/search" replace />} />
-              <Route path="/search" element={<Search />} />
-              <Route path="/category/:query" element={<CategoryPage />} />
+              <Route path="/" element={<Search />} />
+              <Route path="/category/:query" element={<Category />} />
               <Route path="/login" element={<Login />} />
               <Route path="/movie/:id" element={<MovieDetails />} />
               <Route 

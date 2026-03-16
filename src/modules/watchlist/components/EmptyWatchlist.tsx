@@ -22,7 +22,7 @@ export function EmptyWatchlist() {
         titles!
       </p>
       <Link
-        to="/search"
+        to="/"
         className="px-8 py-3 bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 rounded-xl font-medium text-white shadow-lg shadow-primary-500/20 transition-all"
       >
         Find Movies

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useStore } from '../store';
+import { useStore } from '../../store';
 import { motion } from 'framer-motion';
 import { Film, LogIn } from 'lucide-react';
 
@@ -14,7 +14,7 @@ export default function Login() {
     e.preventDefault();
     if (email) {
       login(email);
-      navigate('/search');
+      navigate('/');
     }
   };
 

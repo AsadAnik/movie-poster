@@ -36,7 +36,7 @@ export function Navbar() {
 
   // Hide if we are on Category page (which has its own header) 
   // OR if we are on Search page and haven't scrolled yet
-  const isSearchRoute = location.pathname === '/search' || location.pathname === '/';
+  const isSearchRoute = location.pathname === '/';
   const isCategoryRoute = location.pathname.startsWith('/category/');
   const shouldHideNavbar = isCategoryRoute || (isSearchRoute && !isScrolled);
 
@@ -62,9 +62,9 @@ export function Navbar() {
           <div className="flex items-center space-x-6">
             <motion.div variants={navItemVariants} whileHover="hover" whileTap="tap">
               <Link
-                to="/search"
+                to="/"
                 className={`text-sm font-medium transition-colors ${
-                  location.pathname === '/search' || location.pathname === '/' 
+                  location.pathname === '/' 
                     ? 'text-white' 
                     : 'text-on-surface hover:text-white'
                 }`}

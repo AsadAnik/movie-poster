@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Loader2, Star, Calendar, Clock, Heart, Trash2, Award } from 'lucide-react';
-import { getMovieDetails } from '../lib/api';
-import type { MovieDetails as IMovieDetails } from '../lib/api';
-import { useStore } from '../store';
+import { getMovieDetails } from '../../lib/api';
+import type { MovieDetails as IMovieDetails } from '../../lib/api';
+import { useStore } from '../../store';
 
 export default function MovieDetails() {
   const { id } = useParams<{ id: string }>();

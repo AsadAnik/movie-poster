@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { useStore } from '../store';
-import { MovieCard } from '../components/ui/MovieCard';
+import { useStore } from '../../store';
+import { MovieCard } from '../../components/ui/MovieCard';
 import { Film } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -50,7 +50,7 @@ export default function Watchlist() {
           <p className="text-on-surface mb-8 max-w-md mx-auto">
             Looks like you haven't added any movies yet. Head over to the search page to find some great titles!
           </p>
-          <Link to="/search" className="px-8 py-3 bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 rounded-xl font-medium text-white shadow-lg shadow-primary-500/20 transition-all">
+          <Link to="/" className="px-8 py-3 bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 rounded-xl font-medium text-white shadow-lg shadow-primary-500/20 transition-all">
             Find Movies
           </Link>
         </motion.div>
