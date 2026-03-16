@@ -5,9 +5,6 @@ A beautiful, functional, and highly interactive prototype built for Mr. Anthony 
 ## 🚀 Live Demo
 [https://movie-poster-nine.vercel.app](https://movie-poster-nine.vercel.app)
 
-## 🌟 Demo Video
-[Insert Google Drive Link Here]
-
 ## ✨ Features
 - **User Authentication**: Mock login implementation (any email/password works). Session is saved safely in `localStorage`.
 - **Movie Search**: Instantly search movies from the OMDb API with elegant loading states and graceful error handling. 
