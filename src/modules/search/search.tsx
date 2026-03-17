@@ -48,7 +48,7 @@ export default function Search() {
       />
 
       {/* Main Content Area (Results / Showcases) */}
-      <div className={`relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-500 ${isActive ? 'py-8 min-h-0' : 'py-16 md:py-24 min-h-[500px]'}`}>
+      <div className={`relative z-10 w-full mx-auto transition-all duration-500 ${isActive ? 'max-w-7xl px-4 sm:px-6 lg:px-8 py-8 min-h-0' : 'py-24 md:py-32 min-h-[500px]'}`}>
 
         {/* Loading State */}
         {loading && (

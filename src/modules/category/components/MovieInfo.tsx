@@ -5,9 +5,10 @@ import type { MovieSearchResult } from '../../../types/movie.types';
 
 interface MovieInfoProps {
   activeMovie: MovieSearchResult | null;
+  categoryQuery?: string;
 }
 
-export const MovieInfo = ({ activeMovie }: MovieInfoProps) => {
+export const MovieInfo = ({ activeMovie, categoryQuery }: MovieInfoProps) => {
   const navigate = useNavigate();
 
   return (
@@ -36,15 +37,28 @@ export const MovieInfo = ({ activeMovie }: MovieInfoProps) => {
               </div>
             </div>
 
-            <motion.button
-              whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,1)", color: "#000" }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => navigate(`/movie/${activeMovie.imdbID}`)}
-              className="mt-4 md:mt-6 px-6 py-2 md:px-10 md:py-3 border border-white/20 rounded-full text-white font-black uppercase tracking-[0.3em] text-[8px] md:text-[9px] transition-all flex items-center gap-2"
-            >
-              <Play className="w-3 h-3 fill-current" />
-              View Experience
-            </motion.button>
+            <div className="flex items-center gap-3">
+              <motion.button
+                whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,1)", color: "#000" }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => navigate(`/movie/${activeMovie.imdbID}`)}
+                className="mt-4 md:mt-6 px-6 py-2 md:px-10 md:py-3 border border-white/20 rounded-full text-white font-black uppercase tracking-[0.3em] text-[8px] md:text-[9px] transition-all flex items-center gap-2"
+              >
+                <Play className="w-3 h-3 fill-current" />
+                View Experience
+              </motion.button>
+
+              {categoryQuery && (
+                <motion.button
+                  whileHover={{ scale: 1.05, borderColor: "rgba(255,255,255,0.4)" }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => navigate(`/category/${encodeURIComponent(categoryQuery)}`)}
+                  className="mt-4 md:mt-6 px-6 py-2 md:px-10 md:py-3 border border-white/10 bg-white/5 rounded-full text-white/70 font-black uppercase tracking-[0.3em] text-[8px] md:text-[9px] transition-all flex items-center gap-2"
+                >
+                  View All
+                </motion.button>
+              )}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

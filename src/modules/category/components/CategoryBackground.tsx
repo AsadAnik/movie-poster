@@ -3,9 +3,10 @@ import type { MovieSearchResult } from '../../../types/movie.types';
 
 interface CategoryBackgroundProps {
   activeMovie: MovieSearchResult | null;
+  isFixed?: boolean;
 }
 
-export const CategoryBackground = ({ activeMovie }: CategoryBackgroundProps) => {
+export const CategoryBackground = ({ activeMovie, isFixed = true }: CategoryBackgroundProps) => {
   return (
     <AnimatePresence mode="wait">
       {activeMovie && (
@@ -15,7 +16,7 @@ export const CategoryBackground = ({ activeMovie }: CategoryBackgroundProps) => 
           animate={{ opacity: 0.2 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1 }}
-          className="fixed inset-0 z-0"
+          className={`${isFixed ? 'fixed' : 'absolute'} inset-0 z-0 pointer-events-none`}
         >
           <img
             src={activeMovie.Poster !== 'N/A' ? activeMovie.Poster : '/bg-cover.avif'}

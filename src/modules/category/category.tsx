@@ -1,85 +1,45 @@
-import React, { useState, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useCategoryMovies } from './hooks/useCategoryMovies';
-
-// Atomic Components
-import { CategoryBackground } from './components/CategoryBackground';
-import { CategoryHeader } from './components/CategoryHeader';
-import { MovieCarousel } from './components/MovieCarousel';
-import type { MovieCarouselHandle } from './components/MovieCarousel';
-import { MovieInfo } from './components/MovieInfo';
-import { ProgressStrip } from './components/ProgressStrip';
 import { CategoryLoader } from './components/CategoryLoader';
+import { MovieCard } from '../../components/ui/MovieCard';
+import { ChevronLeft } from 'lucide-react';
 
 export default function CategoryPage() {
   const { query } = useParams<{ query: string }>();
   const { movies, loading } = useCategoryMovies(query || '');
-  const [activeIndex, setActiveIndex] = useState(0);
-  const carouselRef = useRef<MovieCarouselHandle>(null);
-  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false);
-
-  React.useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  // Constants for layout - Responsive
-  const POSTER_WIDTH = isMobile ? 180 : 240;
-  const POSTER_GAP = isMobile ? 15 : 25;
-  const ITEM_WIDTH = POSTER_WIDTH + POSTER_GAP;
+  const navigate = useNavigate();
 
   if (loading) return <CategoryLoader />;
 
-  const activeMovie = movies[activeIndex];
-
-  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    const container = e.currentTarget;
-    const scrollLeft = container.scrollLeft;
-    const newIndex = Math.round(scrollLeft / ITEM_WIDTH);
-    if (newIndex !== activeIndex && newIndex >= 0 && newIndex < movies.length) {
-      setActiveIndex(newIndex);
-    }
-  };
-
-  const handleSelect = (index: number) => {
-    setActiveIndex(index);
-    carouselRef.current?.scrollTo(index);
-  };
-
   return (
-    <div className="relative min-h-screen bg-[#050811] overflow-x-hidden flex flex-col">
-      {/* Immersive Background Transition */}
-      <CategoryBackground activeMovie={activeMovie} />
+    <div className="min-h-screen bg-[#050811] text-white p-6 md:p-12">
+      <div className="max-w-7xl mx-auto">
+        <button 
+          onClick={() => navigate(-1)}
+          className="flex items-center gap-2 text-white/60 hover:text-white mb-8 transition-colors group"
+        >
+          <ChevronLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+          <span>Back to Search</span>
+        </button>
 
-      {/* Premium Header */}
-      <CategoryHeader 
-        query={query || ''} 
-        movieCount={movies.length} 
-      />
+        <div className="flex items-end justify-between mb-12">
+          <div>
+            <span className="text-primary-500 font-bold uppercase tracking-[0.3em] text-xs mb-2 block">Category</span>
+            <h1 className="text-4xl md:text-6xl font-black uppercase italic tracking-tighter">
+              {query}
+            </h1>
+          </div>
+          <div className="text-right hidden md:block">
+            <span className="text-white/40 text-sm font-medium">Found {movies.length} Results</span>
+          </div>
+        </div>
 
-      {/* Main Showcase Stage */}
-      <div className="flex-1 flex flex-col relative z-20 justify-center pt-8 md:pt-12">
-        {/* The Carousel Platform */}
-        <MovieCarousel
-          ref={carouselRef}
-          movies={movies}
-          activeIndex={activeIndex}
-          onScroll={handleScroll}
-          onSelect={setActiveIndex}
-          itemWidth={ITEM_WIDTH}
-        />
-
-        {/* Info Strip */}
-        <MovieInfo activeMovie={activeMovie} />
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-8">
+          {movies.map((movie) => (
+            <MovieCard key={movie.imdbID} movie={movie} />
+          ))}
+        </div>
       </div>
-
-      {/* Dynamic Progress Strip */}
-      <ProgressStrip 
-        movieCount={movies.length} 
-        activeIndex={activeIndex} 
-        onSelect={handleSelect}
-      />
     </div>
   );
 }
